@@ -68,22 +68,12 @@ if hash docker-machine 2> /dev/null; then
 fi
 
 ###############################################################################
-# Uninstall virtualbox
+# Uninstall vmware-fusion
 ###############################################################################
-if hash vboxmanage 2> /dev/null; then
+if hash vmrun 2> /dev/null; then
+  echo "Uninstalling VMware Fusion"
 
-  if [ ! -f VirtualBox-5.1.8-111374-OSX.dmg ];
-  then
-    curl -OL http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-OSX.dmg
-  fi
-
-  hdiutil mount VirtualBox-5.1.8-111374-OSX.dmg
-  sudo sh /Volumes/VirtualBox/VirtualBox_Uninstall.tool --unattended
-  sleep 2
-  hdiutil unmount /Volumes/VirtualBox/
-
-  # Unrem this to remove the downloaded install file.
-  # rm VirtualBox-4.3.26-98988-OSX.dmg
+  brew cask uninstall vmware-fusion
 fi
 
 ###############################################################################

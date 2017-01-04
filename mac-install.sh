@@ -121,28 +121,14 @@ else
 fi
 
 ###############################################################################
-# Install wget to download Virtualbox
+# Install VMWare Fusion 
 ###############################################################################
-# if ! hash wget 2> /dev/null; then
-#   brew install wget
-# fi
+if ! hash vmrun 2> /dev/null; then
+  echo "*** Installing VMware Fusion ***"
 
-###############################################################################
-# Install Virtualbox 
-###############################################################################
-if ! hash vboxmanage 2> /dev/null; then
-  echo "*** Installing VirtualBox ***"
+  brew cask install vmware-fusion
+  brew linkapps vmware-fusion
 
-  # curl -OL http://download.virtualbox.org/virtualbox/5.0.28/VirtualBox-5.0.28-111378-OSX.dmg
-  # hdiutil mount VirtualBox-5.0.28-111378-OSX.dmg
-
-  curl -OL http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-OSX.dmg
-  hdiutil mount VirtualBox-5.1.8-111374-OSX.dmg
-
-  sudo installer -pkg /Volumes/VirtualBox/VirtualBox.pkg -target /
-  sleep 2
-  hdiutil unmount /Volumes/VirtualBox/
-  # rm VirtualBox-5.0.24-108355-OSX.dmg
 fi
 
 ###############################################################################
@@ -164,7 +150,7 @@ echo "Initialize docker-machine"
 ###############################################################################
 if ! docker-machine status docker-vm 2> /dev/null; then
   echo "*** Initialize docker-machine ***"
-  docker-machine create --driver virtualbox docker-vm
+  docker-machine create --driver vmwarefusion docker-vm
 fi
 
 ###############################################################################
@@ -188,15 +174,6 @@ if ! hash boot2docker 2> /dev/null; then
     echo "Xcode 8.1 error most likely. Sadly for now you need to get this from developer.apple.com and install by hand "
     exit 1
   fi
-fi
-
-###############################################################################
-# Install ZSH and Oh-my-zsh
-# You don't need this but I like it when working with this since while debugging this script
-###############################################################################
-if ! hash zsh 2> /dev/null; then
-  echo "brew install zsh" > install_zsh.sh
-  echo "curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh" >> install_zsh.sh
 fi
 
 ###############################################################################
@@ -426,7 +403,7 @@ docker run \
   --rm \
   -ti \
   yantis/instant-archlinux-on-mac \
-  bash -c "run-remote-script https://raw.githubusercontent.com/yantis/instant-archlinux-on-mac/master/mac-install-internal.sh"
+  bash -c "run-remote-script https://raw.githubusercontent.com/bones-codes/instant-archlinux-on-mac/master/mac-install-internal.sh"
 
 # Flag that we did or did not have a successful install
 SUCCESSFUL_INSTALL=$?

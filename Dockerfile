@@ -176,24 +176,6 @@ RUN pacman --noconfirm --needed -Sy base-devel && \
     mv /tmp/ttf-literation-mono-powerline-git/*.xz /var/cache/pacman/general/ && \
     rm -r /tmp/* && \
 
-    # Download and cache oh-my-zsh
-    # wget -P /tmp https://aur.archlinux.org/packages/oh/oh-my-zsh-git/oh-my-zsh-git.tar.gz && \
-    wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/oh-my-zsh-git.tar.gz && \
-    tar -xvf /tmp/oh-my-zsh-git.tar.gz -C /tmp && \
-    chown -R docker:docker /tmp/oh-my-zsh-git && \
-    runuser -l docker -c "(cd /tmp/oh-my-zsh-git && makepkg -sc --noconfirm)" && \
-    mv /tmp/oh-my-zsh-git/*.xz /var/cache/pacman/general/ && \
-    rm -r /tmp/* && \
-
-    # Download and cache bullet-train-oh-my-zsh-theme-git
-    # wget -P /tmp https://aur.archlinux.org/packages/bu/bullet-train-oh-my-zsh-theme-git/bullet-train-oh-my-zsh-theme-git.tar.gz && \
-    wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/bullet-train-oh-my-zsh-theme-git.tar.gz && \
-    tar -xvf /tmp/bullet-train-oh-my-zsh-theme-git.tar.gz -C /tmp && \
-    chown -R docker:docker /tmp/bullet-train-oh-my-zsh-theme-git && \
-    runuser -l docker -c "(cd /tmp/bullet-train-oh-my-zsh-theme-git && makepkg -sc --noconfirm)" && \
-    mv /tmp/bullet-train-oh-my-zsh-theme-git/*.xz /var/cache/pacman/general/ && \
-    rm -r /tmp/* && \
-
     # Download and cache fasd
     # wget -P /tmp https://aur.archlinux.org/packages/fa/fasd-git/fasd-git.tar.gz && \
     wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/fasd-git.tar.gz && \
@@ -201,15 +183,6 @@ RUN pacman --noconfirm --needed -Sy base-devel && \
     chown -R docker:docker /tmp/fasd-git && \
     runuser -l docker -c "(cd /tmp/fasd-git && makepkg -sc --noconfirm)" && \
     mv /tmp/fasd-git/*.xz /var/cache/pacman/general/ && \
-    rm -r /tmp/* && \
-
-    # Download and cache zsh-dwim-git
-    # wget -P /tmp https://aur.archlinux.org/packages/zs/zsh-dwim-git/zsh-dwim-git.tar.gz && \
-    wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/zsh-dwim-git.tar.gz && \
-    tar -xvf /tmp/zsh-dwim-git.tar.gz -C /tmp && \
-    chown -R docker:docker /tmp/zsh-dwim-git && \
-    runuser -l docker -c "(cd /tmp/zsh-dwim-git && makepkg -sc --noconfirm)" && \
-    mv /tmp/zsh-dwim-git/*.xz /var/cache/pacman/general/ && \
     rm -r /tmp/* && \
 
     # Download and cache zaw
@@ -271,7 +244,6 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             glibc \
             gnupg \
             gnutls \
-            grml-zsh-config \
             gssproxy \
             lftp \
             libinput \
@@ -361,8 +333,7 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             xorg-xinit \
             xorg-xev \
             yajl \
-            yaourt \
-            zsh-syntax-highlighting && \
+            yaourt && \
 
             # Clean up pacman
             rm -r /var/lib/pacman/sync/*
@@ -411,5 +382,5 @@ RUN bash -c "echo \"[infinality-bundle-fonts]\" >> /etc/pacman.conf" && \
     # Clean up pacman
     rm -r /var/lib/pacman/sync/*
 
-CMD /bin/zsh
+CMD /bin/bash
 

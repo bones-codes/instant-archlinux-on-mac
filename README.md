@@ -5,8 +5,8 @@ system to get up. It should install without any rebooting etc. Just launch it an
 
 Warning: Backup your stuff or use a fresh iMac or MacBook. There are no guarantees this will work and it might leave your machine in an unusable 
 state. I personally didn't worry about this to much as one can just reset it back to a [factory restore]
-(https://github.com/yantis/instant-archlinux-on-mac/blob/master/factory-restore.md) with "⌘ + R" at startup 
-or "option + ⌘  + R for [internet recovery](https://github.com/yantis/instant-archlinux-on-mac/blob/master/factory-restore.md).
+(https://github.com/bones-codes/instant-archlinux-on-mac/blob/master/factory-restore.md) with "⌘ + R" at startup 
+or "option + ⌘  + R for [internet recovery](https://github.com/bones-codes/instant-archlinux-on-mac/blob/master/factory-restore.md).
 
 That being said. It has been designed to not write anything in case of failure. So worst case if it doesn't work you will probably be OK.
 Though seriously back up anything you actually want to be safe.
@@ -27,23 +27,23 @@ If you have any problems feel free to shoot me an email at yantis@yantis.net
 * Easy to remove and revert back to normal.
 
 ## Installed Programs
-* rEFInd with rEFInd minimal theme.
-* KDE Plasma, XCFE4, and Awesome window desktop managers.
+* rEFInd with rEFInd minimal theme
+* KDE Plasma, XCFE4, and Awesome window desktop managers
 * SDDM with Archlinux Theme
-* Infinality Fonts preconfigured and installed.
+* Infinality Fonts preconfigured and installed
 * Latest Intel, Nvidia, and AMD/ATI Radeon drivers (DKMS)
-* Network Drivers and Broadcom firmware preinstalled and setup.
-* Network manager and applets setup for lan or wifi use.
+* Network Drivers and Broadcom firmware preinstalled and setup
+* Network manager and applets setup for lan or wifi use
 * Powerline with Powerline fonts installed
-* ZSH, Oh-my-zsh, tmux, vim preinstalled.
+* tmux, vim preinstalled
 * Google Chrome
 * Sound system preconfigured (Alsa/Pulseaudio)
 * Mac OSX Drive is shared read only
-* Development Tools plus python2, python3, & ruby.
+* Development Tools plus python2, python3, & ruby
 * Thermald and cpupower
 * Mac Fan control daemon
 * Terminals: xfce4-terminal, konsole, gnome-terminal, vte3
-* xf86-input-mtrack package installed and configured.
+* xf86-input-mtrack package installed and configured
 * Yaourt for AUR
 
 ## Tested Working
@@ -70,31 +70,31 @@ sudo softwareupdate -i -a
 If you wanted your Mac to have 100GB and Arch Linux to have the rest type this:
 
 ```
-curl -O https://raw.githubusercontent.com/yantis/instant-archlinux-on-mac/master/mac-install.sh && mac-install.sh 100
+curl -O https://raw.githubusercontent.com/bones-codes/instant-archlinux-on-mac/master/mac-install.sh && mac-install.sh 100
 ```
 
 Same as above but using Google's URL shortener:
 
 ```
-curl -OL goo.gl/VdgxPO && sh VdgxPO 100
+curl -OL https://goo.gl/ygqrIR && sh ygqrIR 100
 ```
 
 There is a USB option but I haven't figured out the booting on that yet. So that is a work in progress but to 
 do that type:
 
 ```
-curl -O https://raw.githubusercontent.com/yantis/instant-archlinux-on-mac/master/mac-install.sh && mac-install.sh USB
+curl -O https://raw.githubusercontent.com/bones-codes/instant-archlinux-on-mac/master/mac-install.sh && mac-install.sh USB
 ```
 
 # Breakdown (Behind the scenes)
-* Command Line Developer tools, Homebrew, VirtualBox, Boot2docker, Docker all get silently and automatically installed.
+* Command Line Developer tools, Homebrew, VMware Fusion, Boot2docker, Docker all get silently and automatically installed.
 * Since Mac OSX doesn't support the Ext4 file system. We install a 10 day trial of Paragon ExtFS (It can be uninstalled after the install)
 * The file system gets converted to HFS+ if needed then volume gets shrunk down to make room for Arch Linux.
-* The physical volume gets mapped to virtual volumes for VirtualBox.
+* The physical volume gets mapped to virtual volumes for VMware Fusion.
 * The system is profiled to be able to dynamically adapt to its hardware.
-* Boot2docker launches VirtualBox with our physical volumes mapped.
+* Boot2docker launches VMware Fusion with our physical volumes mapped.
 * A [docker container](https://registry.hub.docker.com/u/yantis/instant-archlinux-on-mac) gets launched which then downloads
-this [script](https://github.com/yantis/instant-archlinux-on-mac/blob/master/mac-install-internal.sh) to dynamically setup Arch Linux.
+this [script](https://github.com/bones-codes/instant-archlinux-on-mac/blob/master/mac-install-internal.sh) to dynamically setup Arch Linux.
 * It unsquashes a [rootfs image](http://mirror.rackspace.com/archlinux/iso/2015.04.01/arch/x86_64/) into a chroot environment.
 * Everything gets installed and setup in that chroot environment.
 * Once completed everything in that chroot environment gets rsynced over to the virtual mapped physical drive.
@@ -192,8 +192,8 @@ $ diskutil list
 #### EFI
 * http://www.rodsbooks.com/refind/installing.html#wde
 
-#### VirtualBox
-* https://wiki.archlinux.org/index.php/VirtualBox
+#### VMware
+* https://wiki.archlinux.org/index.php/VMware
 
 #### SquashFS
 * http://askubuntu.com/questions/95392/how-to-create-a-bootable-system-with-a-squashfs-root
