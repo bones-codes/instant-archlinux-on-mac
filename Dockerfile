@@ -167,15 +167,6 @@ RUN pacman --noconfirm --needed -Sy base-devel && \
             broadcom-wl-dkms \
             xf86-video-intel && \
 
-    # Download and cache Liberation TTF Mono Powerline Fonts
-    # wget -P /tmp https://aur.archlinux.org/packages/tt/ttf-liberation-mono-powerline-git/ttf-liberation-mono-powerline-git.tar.gz && \
-    wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/ttf-literation-mono-powerline-git.tar.gz && \
-    tar -xvf /tmp/ttf-literation-mono-powerline-git.tar.gz -C /tmp && \
-    chown -R docker:docker /tmp/ttf-literation-mono-powerline-git && \
-    runuser -l docker -c "(cd /tmp/ttf-literation-mono-powerline-git && makepkg -sc --noconfirm)" && \
-    mv /tmp/ttf-literation-mono-powerline-git/*.xz /var/cache/pacman/general/ && \
-    rm -r /tmp/* && \
-
     # Download and cache fasd
     # wget -P /tmp https://aur.archlinux.org/packages/fa/fasd-git/fasd-git.tar.gz && \
     wget -P /tmp https://aur.archlinux.org/cgit/aur.git/snapshot/fasd-git.tar.gz && \
@@ -282,8 +273,6 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             git \
             haveged \
             htop \
-            gnome-keyring \
-            gnome-terminal \
             google-chrome  \
             linux \
             linux-headers \
@@ -294,6 +283,7 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             mlocate \
             networkmanager \
             network-manager-applet \
+            pass \
             pavucontrol \
             package-query \
             pciutils \
@@ -309,8 +299,6 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             solid \
             gamin \
             bluez \
-            plasma \
-            konsole \
             python-dateutil \
             python-docutils \
             python-pyasn1\
@@ -324,14 +312,15 @@ RUN pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
             systemd \
             terminus-font \
             tree \
+            unzip \
             tmux \
             vim  \
-            xfce4 \
-            xfce4-whiskermenu-plugin \
+            xfce4-terminal \
             xorg-server \
             xorg-server-utils \
             xorg-xinit \
             xorg-xev \
+            xterm \
             yajl \
             yaourt && \
 
@@ -355,6 +344,8 @@ RUN bash -c "echo \"[infinality-bundle-fonts]\" >> /etc/pacman.conf" && \
     rm /var/cache/pacman/general/cantarell-fonts-* && \
 
     pacman --noconfirm -Syw --cachedir /var/cache/pacman/general \
+            adobe-source-code-pro-fonts \
+            adobe-source-sans-pro-fonts \
             infinality-bundle \
             ibfonts-meta-base \
             otf-cantarell-ib \

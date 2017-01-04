@@ -200,44 +200,6 @@ chroot /arch pacman -Syyu --noconfirm
 
 
 ###############################################################################
-# Setup Infinality Fonts
-# Moved to DOCKERFILE
-###############################################################################
-# chroot /arch pacman --noconfirm -Rdd freetype2 cairo fontconfig
-# chroot /arch pacman --noconfirm --needed -S infinality-bundle
-# # chroot /arch pacman --noconfirm --needed -S infinality-bundle-multilib
-
-# # Instal fonts
-# chroot /arch pacman --noconfirm -Rdd ttf-dejavu
-# chroot /arch pacman --noconfirm --needed -S ibfonts-meta-base
-
-# # Install ibfonts-meta-extended without the international fonts
-# # If you want international its "ibfonts-meta-extended"
-# chroot /arch pacman --noconfirm -Rdd cantarell-fonts
-# chroot /arch pacman --noconfirm --needed -S \
-#                       otf-cantarell-ib \
-#                       ibfonts-meta-extended-lt \
-#                       otf-oswald-ib \
-#                       otf-quintessential-ib \
-#                       otf-tex-gyre-ib \
-#                       t1-cursor-ib \
-#                       t1-urw-fonts-ib \
-#                       ttf-caladea-ib \
-#                       ttf-cantoraone-ib \
-#                       ttf-carlito-ib \
-#                       ttf-ddc-uchen-ib \
-#                       ttf-droid-ib \
-#                       ttf-gelasio-ib \
-#                       ttf-lohit-odia-ib \
-#                       ttf-lohit-punjabi-ib \
-#                       ttf-merriweather-ib \
-#                       ttf-merriweather-sans-ib \
-#                       ttf-noto-serif-multilang-ib \
-#                       ttf-opensans-ib \
-#                       ttf-signika-family-ib \
-#                       ttf-ubuntu-font-family-ib
-
-###############################################################################
 # Setup our initial_configuration service
 ###############################################################################
 cp /root/initial_configuration.sh /arch/usr/lib/systemd/scripts/
@@ -571,34 +533,47 @@ chroot /arch systemctl enable NetworkManager.service
 mkdir -p /arch/home/user/.config/xfce4/terminal
 cat >/arch/home/user/.config/xfce4/terminal/terminalrc <<EOL
 [Configuration]
+ColorCursor=#9393a1a1a1a1
+ColorForeground=#FDFDF6F6E3E3
+ColorPalette2=#dcdc32322f2f
+ColorPalette3=#858599990000
+ColorPalette4=#b5b589890000
+ColorPalette5=#26268ae0d2d2
+ColorPalette6=#d3d336368282
+ColorPalette7=#29efa1479755
+ColorPalette8=#eeeee8e8d5d5
+ColorPalette9=#000000000000
+ColorPalette10=#cbcb4b4b1616
+ColorPalette11=#58526ee475c2
+ColorPalette12=#65657b7b8383
+ColorPalette13=#838394949696
+ColorPalette14=#6c6c7171c4c4
+ColorPalette15=#9393a1a1a1a1
+ColorPalette16=#fdfdf6f6e3e3
+FontName=Source Code Pro 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
 MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
-MiscDefaultGeometry=100x40
+MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
 MiscMenubarDefault=FALSE
 MiscMouseAutohide=FALSE
-MiscToolbarDefault=FALSE
+MiscToolbarsDefault=FALSE
 MiscConfirmClose=TRUE
 MiscCycleTabs=TRUE
 MiscTabCloseButtons=TRUE
 MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
-FontName=Liberation Mono for Powerline 14
-ColorPalette=#000000000000;#cccc00000000;#4e4e9a9a0606;#c4c4a0a00000;#34346565a4a4;#757550507b7b;#060698989a9a;#d3d3d7d7cfcf;#555557575353;#efef29292929;#8a8ae2e23434;#fcfce9e94f4f;#73739f9fcfcf;#adad7f7fa8a8;#3434e2e2e2e2;#eeeeeeeeecec
+ScrollingOnOutput=FALSE
+TabActivityColor=#262656568080
 TitleMode=TERMINAL_TITLE_REPLACE
-ShortcutsNoMenukey=TRUE
-ShortcutsNoMnemonics=TRUE
 ScrollingLines=100000
-EOL
-
-# Disable F1 and F10 in the terminal so I can use my function keys to move around tmux panes
-cat >/arch/home/user/.config/xfce4/terminal/accels.scm <<EOL
-(gtk_accel_path "<Actions>/terminal-window/fullscreen" "")
-(gtk_accel_path "<Actions>/terminal-window/contents" "")
+FontAllowBold=FALSE
+AccelPrevTab=<Alt>Left
+AccelNextTab=<Alt>Right
 EOL
 
 chroot /arch pacman -Syy --noconfirm

@@ -21,28 +21,27 @@ If you have any problems feel free to shoot me an email at yantis@yantis.net
 * Installs without USB.
 * Installs without needing network drivers.
 * Installs without needing video drivers.
-* Installs 100% in Mac OSX with no rebooting neeed.
+* Installs 100% in macOS with no rebooting neeed.
 * When you do choose to use Arch Linux it should be 100% usable by simply rebooting.
 * Very quick install. If your bandwidth is fast enough the whole install takes under 10 minutes.
 * Easy to remove and revert back to normal.
 
 ## Installed Programs
 * rEFInd with rEFInd minimal theme
-* KDE Plasma, XCFE4, and Awesome window desktop managers
+* Awesome window desktop manager
 * SDDM with Archlinux Theme
 * Infinality Fonts preconfigured and installed
 * Latest Intel, Nvidia, and AMD/ATI Radeon drivers (DKMS)
 * Network Drivers and Broadcom firmware preinstalled and setup
 * Network manager and applets setup for lan or wifi use
-* Powerline with Powerline fonts installed
 * tmux, vim preinstalled
 * Google Chrome
 * Sound system preconfigured (Alsa/Pulseaudio)
-* Mac OSX Drive is shared read only
+* macOS Drive is shared read only
 * Development Tools plus python2, python3, & ruby
 * Thermald and cpupower
 * Mac Fan control daemon
-* Terminals: xfce4-terminal, konsole, gnome-terminal, vte3
+* Terminals: xfce4-terminal, xterm, vte3
 * xf86-input-mtrack package installed and configured
 * Yaourt for AUR
 
@@ -88,7 +87,7 @@ curl -O https://raw.githubusercontent.com/bones-codes/instant-archlinux-on-mac/m
 
 # Breakdown (Behind the scenes)
 * Command Line Developer tools, Homebrew, VMware Fusion, Boot2docker, Docker all get silently and automatically installed.
-* Since Mac OSX doesn't support the Ext4 file system. We install a 10 day trial of Paragon ExtFS (It can be uninstalled after the install)
+* Since macOS doesn't support the Ext4 file system. We install a 10 day trial of Paragon ExtFS (It can be uninstalled after the install)
 * The file system gets converted to HFS+ if needed then volume gets shrunk down to make room for Arch Linux.
 * The physical volume gets mapped to virtual volumes for VMware Fusion.
 * The system is profiled to be able to dynamically adapt to its hardware.
@@ -98,7 +97,7 @@ this [script](https://github.com/bones-codes/instant-archlinux-on-mac/blob/maste
 * It unsquashes a [rootfs image](http://mirror.rackspace.com/archlinux/iso/2015.04.01/arch/x86_64/) into a chroot environment.
 * Everything gets installed and setup in that chroot environment.
 * Once completed everything in that chroot environment gets rsynced over to the virtual mapped physical drive.
-* rEFInd is installed for dual booting Mac OSX & Linux As well as a very sexy [rEFInd Minimal Theme](https://github.com/EvanPurkhiser/rEFInd-minimal)
+* rEFInd is installed for dual booting macOS & Linux As well as a very sexy [rEFInd Minimal Theme](https://github.com/EvanPurkhiser/rEFInd-minimal)
 * Nothing actually gets written unless everything is successful.
 
 
@@ -143,7 +142,7 @@ $ diskutil list
 * Make sure that FireVault is [turned off](https://support.apple.com/kb/PH18674?locale=en_US)
 * If the script doesn't remove Core Storage for you. You can try the trick of enabling FileVault, rebooting, disabling it and rebooting. Which should remove Core Storage.
 * Fusion drives do not work yet as it hasn't been programmed in yet.
-* Make sure to leave at least 30GB for Mac OSX (or at least whatever the drive space is plus a few GB for updates).
+* Make sure to leave at least 30GB for macOS (or at least whatever the drive space is plus a few GB for updates).
 * If you want to mess with a minimal install of Archlinux. It runs perfectly fine on 10GB or less of space.
 * This hasn't been tested with bootcamp but I suspect it will not work as is.
 * If for some reason on boot you get no disk found  select linux and hit F2 and select "Fallback with Micokernel updates" and run as root "mkinitcpio -p linux" to regenerate the initramfs and reboot
@@ -170,7 +169,7 @@ $ diskutil list
 * http://codylittlewood.com/arch-linux-on-macbook-pro-installation/
 * https://aur.archlinux.org/packages/linux-macbook-pro
 
-#### Creating/Resizing of MacOS drives
+#### Creating/Resizing of macOS drives
 * http://apple.stackexchange.com/questions/63130/create-new-partition-in-unallocated-space-with-diskutil
 * https://github.com/cowboy/dotfiles/blob/master/bin/osx_hide_partition
 * http://en.wikipedia.org/wiki/GUID_Partition_Table
